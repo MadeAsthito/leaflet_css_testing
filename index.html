@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet testing</title>
+
+    <!-- Google Material Icon Sharp -->
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+        rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <script
+        src="https://kit.fontawesome.com/f411181642.js"
+        crossorigin="anonymous"
+    ></script>
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- Datatable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    
+    <!-- Leaflet Map -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+    />
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+    ></script>
+    <link rel="stylesheet" href="./assets/vendor/leaflet/leaflet-routing-machine.css" />
+</head>
+<body>
+    <!-- ##############  -->
+    <!--     HEADER      -->
+    <!-- ##############  -->
+    <header>
+        <a href="" class="logo">
+            <h1>#PickYourLocation</h1>
+        </a>
+    </header>
+
+    
+    <!-- ##############  -->
+    <!--     MAIN      -->
+    <!-- ##############  -->
+    <main>
+        <section class="nav-section">
+            <nav>
+                <ul class="nav">
+                    <li><a href="">Manage Location</a></li>
+                    <li><a href="">Calculate the Distance</a></li>
+                    <li><a href="">Log Out</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <section class="content-section">
+            <div class="view-location">
+                <div class="map" id="map_view"></div>
+                <div class="header">
+                    <h1>Location's Data</h1>
+                    <a href="" class="btn-add">Add Location</a>
+                </div>
+                <div class="table-responsive">
+                    <table id="tableView" class="display" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Location Name</th>
+                                <th>Description</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Pizza dut</td>
+                                <td>Pizza's chain Restaurant</td>
+                                <td>pizza@letseat.com</td>
+                                <td>+6287830178996</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="add-location" style="display: none;">
+
+            </div>
+        </section>
+    </main>
+
+    
+    <!-- ##############  -->
+    <!--     FOOTER      -->
+    <!-- ##############  -->
+    <footer>
+        <h1>@ Made Asthito Y.P 2024</h1>
+    </footer>
+
+    <script src="./assets/vendor/leaflet/leaflet-routing-machine.js"></script>
+    <!-- Javascript -->
+    <script src="./assets/js/index.js"></script>
+    <script>  
+    $(function () {
+        $("#tableView").DataTable({ "autoWidth": true});
+        // $('#example2').DataTable({
+        //   "paging": true,
+        //   "lengthChange": false,
+        //   "searching": false,
+        //   "ordering": true,
+        //   "info": true,
+        //   "autoWidth": false
+        // });
+      });
+    </script>
+</body>
+</html>
