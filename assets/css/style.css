@@ -124,6 +124,75 @@ img {
 
 /*
 ################
+               BUTTON 
+################
+*/
+
+.btn-group {
+	display: flex;
+	margin-top: 0.6rem;
+	gap: 1rem;
+}
+
+.btn-group > * {
+	flex: 1 1 auto;
+}
+
+.btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 600;
+	border-radius: 0.2rem;
+	padding: 0.2rem 1rem;
+	position: relative;
+	transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.btn::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	box-shadow: var(--box-shadow);
+	opacity: 1;
+	transition: opacity 0.3s ease;
+}
+
+.btn:hover:after {
+	opacity: 0;
+}
+
+.btn.btn-add {
+	background-color: var(--color-green);
+	color: var(--color-white);
+}
+
+.btn.btn-add:hover {
+	background-color: var(--color-white);
+	color: var(--color-green);
+}
+
+.btn.btn-secondary {
+	background-color: var(--color-white);
+	color: var(--color-danger);
+}
+
+.btn.btn-secondary::after {
+	opacity: 0;
+}
+
+.btn.btn-secondary:hover:after {
+	opacity: 1;
+}
+
+.btn.btn-secondary:hover {
+	background-color: var(--color-danger);
+	color: var(--color-white);
+}
+
+/*
+################
                HEADER 
 ################
 */
@@ -350,6 +419,23 @@ main {
 
 /*
 ################
+               GENERATE DISTANCE SECTION 
+################
+*/
+
+.generate-route {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.generate-route .btn-group {
+	width: 350px;
+}
+
+/*
+################
                FOOTER SECTION 
 ################
 */
@@ -367,73 +453,4 @@ footer .icon-group {
 	align-items: center;
 	gap: 1rem;
 	padding-bottom: 2rem;
-}
-
-/*
-################
-               BUTTON 
-################
-*/
-
-.btn-group {
-	display: flex;
-	margin-top: 0.6rem;
-	gap: 1rem;
-}
-
-.btn-group > * {
-	flex: 1 1 auto;
-}
-
-.btn {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-weight: 600;
-	border-radius: 0.2rem;
-	padding: 0.2rem 1rem;
-	position: relative;
-	transition: color 0.3s ease, background-color 0.3s ease;
-}
-
-.btn::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	border-radius: inherit;
-	box-shadow: var(--box-shadow);
-	opacity: 1;
-	transition: opacity 0.3s ease;
-}
-
-.btn:hover:after {
-	opacity: 0;
-}
-
-.btn.btn-add {
-	background-color: var(--color-green);
-	color: var(--color-white);
-}
-
-.btn.btn-add:hover {
-	background-color: var(--color-white);
-	color: var(--color-green);
-}
-
-.btn.btn-secondary {
-	background-color: var(--color-white);
-	color: var(--color-danger);
-}
-
-.btn.btn-secondary::after {
-	opacity: 0;
-}
-
-.btn.btn-secondary:hover:after {
-	opacity: 1;
-}
-
-.btn.btn-secondary:hover {
-	background-color: var(--color-danger);
-	color: var(--color-white);
 }

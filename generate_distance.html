@@ -62,11 +62,11 @@
 					</div>
 				</div>
 				<nav class="nav">
-					<a href="index.html" class="active">
+					<a href="index.html" class="">
 						<span class="material-icons-sharp"> map </span>
 						<h3>Manage Location</h3>
 					</a>
-					<a href="generate_distance.html" class="">
+					<a href="generate_distance.html" class="active">
 						<span class="material-icons-sharp"> navigation </span>
 						<h3>Generate Distance</h3>
 					</a>
@@ -78,33 +78,17 @@
 			</section>
 
 			<section class="content-section">
-				<div class="add-section">
-					<div class="map-add" id="map_add"></div>
-					<div class="form">
-						<h1>Add Location</h1>
-						<hr />
-						<div class="form-input">
-							<label for="name">Location Name</label>
-							<input id="name" type="text" />
-						</div>
-						<div class="form-input">
-							<label for="description">Description</label>
-							<input id="description" type="text" />
-						</div>
-						<div class="form-input">
-							<label for="email">Email</label>
-							<input id="email" type="text" />
-						</div>
-						<div class="form-input">
-							<label for="phoneNumber">Phone Number</label>
-							<input id="phoneNumber" type="text" />
-						</div>
-						<div class="btn-group">
-							<a href="add_location.html" class="btn btn-add">Confirm</a>
-							<a href="index.html" class="btn btn-secondary">Cancel</a>
-						</div>
+				<div class="generate-route">
+					<div class="map" id="map_view"></div>
+					<div class="btn-group">
+						<a href="generate_distance.html" class="btn btn-add"
+							>Generate Distance</a
+						>
+
+						<a href="generate_distance.html" class="btn btn-secondary">Reset</a>
 					</div>
 				</div>
+				<div class="add-location" style="display: none"></div>
 			</section>
 		</main>
 
@@ -140,6 +124,6 @@
 
 		<script src="./assets/vendor/leaflet/leaflet-routing-machine.js"></script>
 		<!-- Javascript -->
-		<script src="./assets/js/add_location.js"></script>
+		<script src="./assets/js/index.js"></script>
 	</body>
 </html>
