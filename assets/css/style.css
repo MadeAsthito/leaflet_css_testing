@@ -147,6 +147,7 @@ img {
 	padding: 0.2rem 1rem;
 	position: relative;
 	transition: color 0.3s ease, background-color 0.3s ease;
+	outline: 0;
 }
 
 .btn::after {
@@ -359,6 +360,10 @@ main {
 
 .table-responsive:hover {
 	box-shadow: none;
+}
+
+.table-data {
+	padding: 1rem;
 }
 
 /*
