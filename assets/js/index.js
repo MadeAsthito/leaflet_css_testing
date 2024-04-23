@@ -1,4 +1,62 @@
-document.addEventListener("DOMContentLoaded", function () {
+// Javascript for dashboard
+
+document.addEventListener("DOMContentLoaded", async function () {
+	// Menampilkan peta
+	var mymap = L.map("map_view").setView(
+		[-8.795279032677602, 115.17553347766035],
+		12
+	);
+
+	// Format popup content
+	formatContent = function (text, lat, lng) {
+		return `
+		<div style="text-align: center"><b>${text}</b></div>
+		<div>Lat : ${lat}</div>
+		<div>Lng : ${lng}</div>
+	`;
+	};
+
+	// Format popup content
+	formatContentRestaurant = function (text, email, phone, lat, lng) {
+		return `
+		<div style="text-align: center"><b>${text}</b></div>
+		<div>Email : ${email}</div>
+		<div>Phone : ${phone}</div>
+		<div>Lat : ${lat}</div>
+		<div>Lng : ${lng}</div>
+	`;
+	};
+
+	// Menambahkan layer peta
+	L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+		attribution:
+			'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+		maxZoom: 18,
+	}).addTo(mymap);
+
+	// Membuat icon dari gambar PNG
+	var myIcon = L.icon({
+		iconUrl: "https://gis.manpits.xyz/icon.png",
+		iconSize: [40, 40],
+		iconAnchor: [20, 40],
+	});
+
+	var api_url = localStorage.getItem("api_url");
+	api_url += "/restaurants";
+
+	const headers = {
+		Authorization: "Bearer " + token,
+	};
+	var restaurants = await axios
+		.get(api_url, { headers: headers })
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => {
+			// Handle error
+			console.error("API call failed:", error);
+		});
+
 	// Get reference to table body
 	var tableBody = document.getElementById("table-body");
 
@@ -14,19 +72,19 @@ document.addEventListener("DOMContentLoaded", function () {
 		indexCell.style.textAlign = "center";
 
 		var nameCell = row.insertCell();
-		nameCell.textContent = restaurant.Name;
+		nameCell.textContent = restaurant.name;
 		nameCell.style.textAlign = "left";
 
 		var descriptionCell = row.insertCell();
-		descriptionCell.textContent = restaurant.Description;
+		descriptionCell.textContent = restaurant.description;
 		descriptionCell.style.textAlign = "left";
 
 		var emailCell = row.insertCell();
-		emailCell.textContent = restaurant.Email;
+		emailCell.textContent = restaurant.email;
 		emailCell.style.textAlign = "center";
 
 		var phoneCell = row.insertCell();
-		phoneCell.textContent = restaurant.Phone;
+		phoneCell.textContent = restaurant.phone;
 		phoneCell.style.textAlign = "center";
 
 		var actionCell = row.insertCell();
@@ -37,118 +95,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		i++;
 	});
-});
 
-var restaurants = [
-	{
-		Latitude: -8.65,
-		Longitude: 115.2167,
-		Name: "Warung Sate",
-		Description: "Serving delicious traditional Indonesian satay.",
-		Email: "warungsate@example.com",
-		Phone: "+62 812-3456-7890",
-	},
-	{
-		Latitude: -8.7925,
-		Longitude: 115.1682,
-		Name: "Jimbaran Seafood",
-		Description: "Fresh seafood served beachside with stunning sunset views.",
-		Email: "jimbaranseafood@example.com",
-		Phone: "+62 812-9876-5432",
-	},
-	{
-		Latitude: -8.6525,
-		Longitude: 115.1385,
-		Name: "Nasi Goreng Express",
-		Description: "Quick and tasty Indonesian fried rice.",
-		Email: "nasigorengexpress@example.com",
-		Phone: "+62 812-1234-5678",
-	},
-	{
-		Latitude: -8.6705,
-		Longitude: 115.2126,
-		Name: "Cafe Ubud",
-		Description: "Relaxing café with organic coffee and breakfast options.",
-		Email: "cafeubud@example.com",
-		Phone: "+62 812-4567-8901",
-	},
-	{
-		Latitude: -8.7832,
-		Longitude: 115.1683,
-		Name: "Pizza Paradise",
-		Description: "Authentic Italian pizza served in a cozy atmosphere.",
-		Email: "pizzaparadise@example.com",
-		Phone: "+62 812-3456-7890",
-	},
-];
+	restaurants.forEach((restaurant) => {
+		var marker = L.marker([restaurant.latitude, restaurant.longitude], {
+			icon: myIcon,
+			draggable: false,
+		}).addTo(mymap);
 
-// Menampilkan peta
-var mymap = L.map("map_view").setView(
-	[-8.795279032677602, 115.17553347766035],
-	12
-);
+		// Membuat popup baru
+		var popup = L.popup({ offset: [0, -30] }).setLatLng([
+			restaurant.latitude,
+			restaurant.longitude,
+		]);
 
-// Format popup content
-formatContent = function (text, lat, lng) {
-	return `
-	<div style="text-align: center"><b>${text}</b></div>
-	<div>Lat : ${lat}</div>
-	<div>Lng : ${lng}</div>
-`;
-};
+		// Binding popup ke marker
+		marker.bindPopup(popup);
 
-// Format popup content
-formatContentRestauran = function (text, email, phone, lat, lng) {
-	return `
-	<div style="text-align: center"><b>${text}</b></div>
-	<div>Email : ${email}</div>
-	<div>Phone : ${phone}</div>
-	<div>Lat : ${lat}</div>
-	<div>Lng : ${lng}</div>
-`;
-};
-
-// Menambahkan layer peta
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-	attribution:
-		'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-	maxZoom: 18,
-}).addTo(mymap);
-
-// Membuat icon dari gambar PNG
-var myIcon = L.icon({
-	iconUrl: "https://gis.manpits.xyz/icon.png",
-	iconSize: [40, 40],
-	iconAnchor: [20, 40],
-});
-
-restaurants.forEach((restaurant) => {
-	var marker = L.marker([restaurant.Latitude, restaurant.Longitude], {
-		icon: myIcon,
-		draggable: false,
-	}).addTo(mymap);
-
-	// Membuat popup baru
-	var popup = L.popup({ offset: [0, -30] }).setLatLng([
-		restaurant.Latitude,
-		restaurant.Longitude,
-	]);
-
-	// Binding popup ke marker
-	marker.bindPopup(popup);
-
-	// Menambahkan event listener pada marker
-	marker.on("click", function () {
-		popup.setLatLng(marker.getLatLng()),
-			popup.setContent(
-				formatContentRestauran(
-					restaurant.Name,
-					restaurant.Email,
-					restaurant.Phone,
-					marker.getLatLng().lat,
-					marker.getLatLng().lng
-				)
-			);
+		// Menambahkan event listener pada marker
+		marker.on("click", function () {
+			popup.setLatLng(marker.getLatLng()),
+				popup.setContent(
+					formatContentRestaurant(
+						restaurant.name,
+						restaurant.email,
+						restaurant.phone,
+						marker.getLatLng().lat,
+						marker.getLatLng().lng
+					)
+				);
+		});
 	});
 });
 

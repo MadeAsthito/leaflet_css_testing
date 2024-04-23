@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Leaflet testing</title>
+		<title>EatMap</title>
 
 		<!-- Google Material Icon Sharp -->
 		<link
@@ -36,8 +36,21 @@
 			rel="stylesheet"
 			href="./assets/vendor/leaflet/leaflet-routing-machine.css"
 		/>
+
+		<!-- Axios JS -->
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	</head>
 	<body>
+		<script>
+			// Check if JWT token exists in local storage
+			const token = localStorage.getItem("token");
+
+			// If JWT token doesn't exist, redirect to the login page
+			if (!token) {
+				window.location.href = "/login.html"; // Replace "/login.html" with your actual login page URL
+			}
+		</script>
+
 		<!-- ##############  -->
 		<!--     HEADER      -->
 		<!-- ##############  -->
@@ -62,7 +75,7 @@
 					</div>
 				</div>
 				<nav class="nav">
-					<a href="index.html" class="active">
+					<a href="dashboard.html" class="active">
 						<span class="material-icons-sharp"> map </span>
 						<h3>Manage Location</h3>
 					</a>
@@ -80,7 +93,7 @@
 			<section class="content-section">
 				<div class="add-section">
 					<div class="map-add" id="map_add"></div>
-					<div class="form">
+					<form class="form" id="addForm">
 						<h1>Add Location</h1>
 						<hr />
 						<div class="form-input">
@@ -100,12 +113,64 @@
 							<input id="phoneNumber" type="text" />
 						</div>
 						<div class="btn-group">
-							<a href="add_location.html" class="btn btn-add">Confirm</a>
-							<a href="index.html" class="btn btn-secondary">Cancel</a>
+							<button class="btn btn-add" type="submit">Confirm</button>
+							<a href="dashboard.html" class="btn btn-danger">Cancel</a>
 						</div>
-					</div>
+					</form>
 				</div>
 			</section>
+
+			<script>
+				document
+					.getElementById("addForm")
+					.addEventListener("submit", function (event) {
+						console.log("add start");
+
+						event.preventDefault(); // Prevent form submission
+
+						if (newMarker) {
+							// Retrieve username and password from the form
+							const name = document.getElementById("name").value;
+							const description = document.getElementById("description").value;
+							const email = document.getElementById("email").value;
+							const phoneNumber = document.getElementById("phoneNumber").value;
+							const latitude = newMarker._latlng.lat;
+							const longitude = newMarker._latlng.lng;
+
+							// Make API call
+							const headers = {
+								Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+								"Content-Type": "application/json", // Specify the content type as JSON
+							};
+							const postData = {
+								name: name,
+								description: description,
+								email: email,
+								phone: phoneNumber,
+								latitude: latitude,
+								longitude: longitude,
+							};
+							axios
+								.post("http://127.0.0.1:8000/api/restaurants", postData, {
+									headers,
+								})
+								.then((response) => {
+									// Handle successful call
+									console.log(response.data); // Assuming the API returns a token
+
+									// Redirect to another page (e.g., dashboard)
+									window.location.href = "/dashboard.html"; // Replace with your dashboard page URL
+								})
+								.catch((error) => {
+									// Handle error
+									console.error("Data failed uploaded:", error);
+									alert(
+										"Data failed uploaded. Please check your data and credentials."
+									);
+								});
+						}
+					});
+			</script>
 		</main>
 
 		<!-- ##############  -->

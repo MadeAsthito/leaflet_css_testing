@@ -140,6 +140,7 @@ img {
 
 .btn {
 	display: flex;
+	cursor: pointer;
 	justify-content: center;
 	align-items: center;
 	font-weight: 600;
@@ -148,6 +149,12 @@ img {
 	position: relative;
 	transition: color 0.3s ease, background-color 0.3s ease;
 	outline: 0;
+}
+
+button.btn {
+	border: 0;
+	font-size: 1rem;
+	padding: 0.6rem 1rem;
 }
 
 .btn::after {
@@ -174,22 +181,40 @@ img {
 	color: var(--color-green);
 }
 
-.btn.btn-secondary {
+.btn.btn-secondary,
+.btn.btn-danger {
 	background-color: var(--color-white);
+}
+
+.btn.btn-secondary {
+	color: var(--color-dark-green);
+}
+
+.btn.btn-danger {
 	color: var(--color-danger);
 }
 
-.btn.btn-secondary::after {
+.btn.btn-secondary::after,
+.btn.btn-danger::after {
 	opacity: 0;
 }
 
-.btn.btn-secondary:hover:after {
+.btn.btn-secondary:hover:after,
+.btn.btn-danger:hover:after {
 	opacity: 1;
 }
 
-.btn.btn-secondary:hover {
-	background-color: var(--color-danger);
+.btn.btn-secondary:hover,
+.btn.btn-danger:hover {
 	color: var(--color-white);
+}
+
+.btn.btn-secondary:hover {
+	background-color: var(--color-dark-green);
+}
+
+.btn.btn-danger:hover {
+	background-color: var(--color-danger);
 }
 
 /*
@@ -458,4 +483,27 @@ footer .icon-group {
 	align-items: center;
 	gap: 1rem;
 	padding-bottom: 2rem;
+}
+
+/*
+################
+               LOGIN
+################
+*/
+
+.login {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.login h1 {
+	color: var(--color-dark-green);
+}
+
+.login button {
+	border: 0;
+	font-size: 1rem;
+	padding: 0.6rem 1rem;
 }

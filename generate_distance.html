@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Leaflet testing</title>
+		<title>EatMap</title>
 
 		<!-- Google Material Icon Sharp -->
 		<link
@@ -36,8 +36,21 @@
 			rel="stylesheet"
 			href="./assets/vendor/leaflet/leaflet-routing-machine.css"
 		/>
+
+		<!-- Axios JS -->
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	</head>
 	<body>
+		<script>
+			// Check if JWT token exists in local storage
+			const token = localStorage.getItem("token");
+
+			// If JWT token doesn't exist, redirect to the login page
+			if (!token) {
+				window.location.href = "/login.html"; // Replace "/login.html" with your actual login page URL
+			}
+		</script>
+
 		<!-- ##############  -->
 		<!--     HEADER      -->
 		<!-- ##############  -->
@@ -62,7 +75,7 @@
 					</div>
 				</div>
 				<nav class="nav">
-					<a href="index.html" class="">
+					<a href="dashboard.html" class="">
 						<span class="material-icons-sharp"> map </span>
 						<h3>Manage Location</h3>
 					</a>

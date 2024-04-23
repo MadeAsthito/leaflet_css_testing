@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>EatMap</title>
+
+		<!-- Google Material Icon Sharp -->
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+			rel="stylesheet"
+		/>
+
+		<!-- Font Awesome -->
+		<script
+			src="https://kit.fontawesome.com/f411181642.js"
+			crossorigin="anonymous"
+		></script>
+
+		<!-- Style CSS -->
+		<link rel="stylesheet" href="./assets/css/style.css" />
+
+		<!-- Axios JS -->
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	</head>
+	<body class="login">
+		<form class="form" id="loginForm">
+			<h1>EatMap</h1>
+			<hr />
+			<div class="form-input">
+				<label for="email">Email</label>
+				<input id="email" type="email" required />
+			</div>
+			<div class="form-input">
+				<label for="password">Password</label>
+				<input id="password" type="password" required />
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-add" type="submit">Login</button>
+			</div>
+		</form>
+
+		<script>
+			document
+				.getElementById("loginForm")
+				.addEventListener("submit", function (event) {
+					console.log("login start");
+
+					event.preventDefault(); // Prevent form submission
+
+					// Retrieve username and password from the form
+					const email = document.getElementById("email").value;
+					const password = document.getElementById("password").value;
+
+					console.log("email" + email);
+					console.log("password" + password);
+
+					// Make API call to login endpoint
+					axios
+						.post("http://127.0.0.1:8000/api/login", {
+							email: email,
+							password: password,
+						})
+						.then((response) => {
+							// Handle successful login
+							console.log(response.data); // Assuming the API returns a token
+							token = response.data.data.token;
+							user = response.data.data.user;
+							
+							localStorage.setItem("token", token);
+							localStorage.setItem("user", user);
+							localStorage.setItem("api_url", "http://127.0.0.1:8000/api");
+							// Redirect to another page (e.g., dashboard)
+							window.location.href = "/dashboard.html"; // Replace with your dashboard page URL
+						})
+						.catch((error) => {
+							// Handle login error
+							console.error("Login failed:", error);
+							alert("Login failed. Please check your credentials.");
+						});
+				});
+		</script>
+	</body>
+</html>
