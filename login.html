@@ -57,7 +57,7 @@
 
 					// Make API call to login endpoint
 					axios
-						.post("http://127.0.0.1:8000/api/login", {
+						.post("http://api_2105551078.local.net/api/login", {
 							email: email,
 							password: password,
 						})
@@ -69,7 +69,7 @@
 							
 							localStorage.setItem("token", token);
 							localStorage.setItem("user", user);
-							localStorage.setItem("api_url", "http://127.0.0.1:8000/api");
+							localStorage.setItem("api_url", "http://api_2105551078.local.net/api");
 							// Redirect to another page (e.g., dashboard)
 							window.location.href = "/index.html"; // Replace with your dashboard page URL
 						})
