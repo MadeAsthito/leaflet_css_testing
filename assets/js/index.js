@@ -201,6 +201,8 @@ mymap.on("click", function (e) {
 });
 
 async function deleteData(id_restaurant) {
+	var token = localStorage.getItem("token");
+
 	var confirmed = confirm(
 		"Are you sure wanted to delete this data? Click OK if you wanted to proceed"
 	);
@@ -235,6 +237,8 @@ async function deleteData(id_restaurant) {
 }
 
 async function logout() {
+	var token = localStorage.getItem("token");
+
 	var confirmed = confirm(
 		"Are you sure wanted to log out? Click OK if you wanted to proceed"
 	);

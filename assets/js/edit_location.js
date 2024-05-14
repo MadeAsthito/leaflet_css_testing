@@ -82,6 +82,8 @@ mymap.on("click", function (e) {
 
 async function initMarker() {
 	var api_url = localStorage.getItem("api_url");
+    var token = localStorage.getItem("token");
+
 
 	var url = window.location.href;
 	var param = url.split("?")[1];
