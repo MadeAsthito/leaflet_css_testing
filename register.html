@@ -23,65 +23,67 @@
 		<!-- Axios JS -->
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	</head>
-	<body class="login">
-		<form class="form" id="loginForm">
+	<body class="register">
+		<form class="form" id="registerForm">
 			<h1>EatMap</h1>
 			<hr />
 			<div class="form-input">
-				<label for="email">Email (test@gmail.com)</label>
+				<label for="name">Name</label>
+				<input id="name" type="text" required />
+			</div>
+			<div class="form-input">
+				<label for="email">Email</label>
 				<input id="email" type="email" required />
 			</div>
 			<div class="form-input">
-				<label for="password">Password (testing)</label>
+				<label for="password">Password</label>
 				<input id="password" type="password" required />
 			</div>
 			<div class="btn-group">
-				<button class="btn btn-add" type="submit">Login</button>
+				<button class="btn btn-add" type="submit">Register</button>
 			</div>
 			<hr />
-			<a href="/register.html">Register</a>
+			<a href="/login.html">Login</a>
 		</form>
 
 		<script>
 			document
-				.getElementById("loginForm")
+				.getElementById("registerForm")
 				.addEventListener("submit", function (event) {
-					console.log("login start");
+					console.log("register start");
 
 					event.preventDefault(); // Prevent form submission
 
 					// Retrieve username and password from the form
+					var name = document.getElementById("name").value;
 					var email = document.getElementById("email").value;
 					var password = document.getElementById("password").value;
 
 					var api_url = "http://api_2105551078.local.net/api";
 					// var api_url = "http://127.0.0.1:8000";
 
-					console.log("email" + email);
-					console.log("password" + password);
-
 					// Make API call to login endpoint
 					axios
-						.post(api_url + "/login", {
+						.post(api_url + "/register", {
+							name: name,
 							email: email,
 							password: password,
 						})
 						.then((response) => {
 							// Handle successful login
 							console.log(response.data); // Assuming the API returns a token
-							token = response.data.data.token;
-							user = response.data.data.user;
-
-							localStorage.setItem("token", token);
-							localStorage.setItem("user", user);
-							localStorage.setItem("api_url", api_url);
-							// Redirect to another page (e.g., dashboard)
-							window.location.href = "/index.html"; // Replace with your dashboard page URL
+							var confirmed = confirm(
+								"Data updated successfully. Click OK to proceed to dashboard."
+							);
+							if (confirmed) {
+								// Redirect to another page (e.g., dashboard) upon confirmation
+								window.location.href = "/login.html"; // Replace with desired redirect URL
+							}
 						})
 						.catch((error) => {
 							// Handle login error
-							console.error("Login failed:", error);
-							alert("Login failed. Please check your credentials.");
+							console.error("Register failed:", error);
+							alert("Register failed. Please check your credentials.");
 						});
 				});
 		</script>

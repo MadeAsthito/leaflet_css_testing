@@ -292,6 +292,7 @@ main {
 }
 
 .nav a {
+	cursor: pointer;
 	display: flex;
 	align-items: center;
 	color: var(--color-info);
@@ -487,23 +488,36 @@ footer .icon-group {
 
 /*
 ################
-               LOGIN
+               LOGIN & LOGOUT
 ################
 */
 
-.login {
+.login,
+.register {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-.login h1 {
+.login h1,
+.register h1 {
 	color: var(--color-dark-green);
 }
 
-.login button {
+.login button,
+.register button {
 	border: 0;
 	font-size: 1rem;
 	padding: 0.6rem 1rem;
+}
+
+.login a,
+.register a {
+	color: var(--color-green);
+}
+
+.login a:hover,
+.register a:hover {
+	color: var(--color-info);
 }
