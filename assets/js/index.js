@@ -208,7 +208,6 @@ async function deleteData(id_restaurant) {
 	);
 	if (confirmed) {
 		var api_url = localStorage.getItem("api_url");
-		console.log("deleting data for #" + id_restaurant);
 
 		var headers = {
 			Authorization: `Bearer ${token}`, // Include the token in the Authorization header
@@ -233,6 +232,8 @@ async function deleteData(id_restaurant) {
 				console.error("Data failed uploaded:", error);
 				alert("Data failed uploaded. Please check your data and credentials.");
 			});
+
+		console.log("deleting data for #" + id_restaurant);
 	}
 }
 
@@ -272,5 +273,7 @@ async function logout() {
 				console.error("Logout Failed:", error);
 				alert("Logout Failed!");
 			});
+
+		console.log("Logging Out");
 	}
 }
