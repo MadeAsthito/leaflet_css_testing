@@ -137,6 +137,10 @@
 							var latitude = newMarker._latlng.lat;
 							var longitude = newMarker._latlng.lng;
 
+							var url = window.location.href;
+							var param = url.split("?")[1];
+							var id_restaurant = param.split("=")[1];
+
 							// Make API call
 							var headers = {
 								Authorization: `Bearer ${token}`, // Include the token in the Authorization header
@@ -151,7 +155,7 @@
 								longitude: longitude,
 							};
 							axios
-								.put("http://127.0.0.1:8000/api/restaurants", putData, {
+								.put("http://127.0.0.1:8000/api/restaurants/" + id_restaurant, putData, {
 									headers,
 								})
 								.then((response) => {

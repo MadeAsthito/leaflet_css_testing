@@ -87,15 +87,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 		phoneCell.textContent = restaurant.phone;
 		phoneCell.style.textAlign = "center";
 
-		
 		// Update :
 		var actionCell = row.insertCell();
 		var editButton = document.createElement("button");
 		editButton.innerHTML = '<span class="material-icons-sharp">edit</span>';
 		editButton.classList.add("btn", "btn-add");
-		editButton.onclick = function() {
-			window.location.href = './edit_location.html?id=' + restaurants.id
-		}
+		editButton.onclick = function () {
+			window.location.href = "./edit_location.html?id=" + restaurant.id;
+		};
 		actionCell.appendChild(editButton);
 
 		var deleteButton = document.createElement("button");
