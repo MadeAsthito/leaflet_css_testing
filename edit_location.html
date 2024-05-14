@@ -128,7 +128,7 @@
 
 						event.preventDefault(); // Prevent form submission
 
-						if (newMarker) {
+						if (newMarker != undefined) {
 							// Retrieve username and password from the form
 							var name = document.getElementById("name").value;
 							var description = document.getElementById("description").value;
@@ -179,8 +179,9 @@
 									);
 								});
 						} else {
-							alert("Please add a marker on the map.");
-						}
+							alert(
+								"Missing Data! Please insert the data and the map position by clicking it on the map"
+							);						}
 					});
 			</script>
 		</main>

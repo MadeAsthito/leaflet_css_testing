@@ -98,19 +98,19 @@
 						<hr />
 						<div class="form-input">
 							<label for="name">Location Name</label>
-							<input id="name" type="text" />
+							<input id="name" type="text" required />
 						</div>
 						<div class="form-input">
 							<label for="description">Description</label>
-							<input id="description" type="text" />
+							<input id="description" type="text" required />
 						</div>
 						<div class="form-input">
 							<label for="email">Email</label>
-							<input id="email" type="text" />
+							<input id="email" type="text" required />
 						</div>
 						<div class="form-input">
 							<label for="phoneNumber">Phone Number</label>
-							<input id="phoneNumber" type="text" />
+							<input id="phoneNumber" type="text" required />
 						</div>
 						<div class="btn-group">
 							<button class="btn btn-add" type="submit">Confirm</button>
@@ -137,6 +137,10 @@
 							var latitude = newMarker._latlng.lat;
 							var longitude = newMarker._latlng.lng;
 
+							if (!name || !description || !email || !phoneNumber) {
+								alert("Missing Data! Please insert the required data!");
+							}
+
 							// Make API call
 							var headers = {
 								Authorization: `Bearer ${token}`, // Include the token in the Authorization header
@@ -151,9 +155,13 @@
 								longitude: longitude,
 							};
 							axios
-								.post("http://api_2105551078.local.net/api/restaurants", postData, {
-									headers,
-								})
+								.post(
+									"http://api_2105551078.local.net/api/restaurants",
+									postData,
+									{
+										headers,
+									}
+								)
 								.then((response) => {
 									// Handle successful call
 									console.log(response.data); // Assuming the API returns a token
@@ -168,7 +176,7 @@
 										"Data failed uploaded. Please check your data and credentials."
 									);
 								});
-						}else{
+						} else {
 							alert(
 								"Missing Data! Please insert the data and the map position by clicking it on the map"
 							);
