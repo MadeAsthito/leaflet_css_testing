@@ -128,7 +128,7 @@
 
 						event.preventDefault(); // Prevent form submission
 
-						if (newMarker != undefined) {
+						if (newMarker) {
 							// Retrieve username and password from the form
 							var name = document.getElementById("name").value;
 							var description = document.getElementById("description").value;
@@ -142,7 +142,7 @@
 								Authorization: `Bearer ${token}`, // Include the token in the Authorization header
 								"Content-Type": "application/json", // Specify the content type as JSON
 							};
-							var postData = {
+							var putData = {
 								name: name,
 								description: description,
 								email: email,
@@ -151,7 +151,7 @@
 								longitude: longitude,
 							};
 							axios
-								.post("http://api_2105551078.local.net/api/restaurants", postData, {
+								.put("http://127.0.0.1:8000/api/restaurants", putData, {
 									headers,
 								})
 								.then((response) => {
@@ -159,7 +159,13 @@
 									console.log(response.data); // Assuming the API returns a token
 
 									// Redirect to another page (e.g., dashboard)
-									window.location.href = "/index.html"; // Replace with your dashboard page URL
+									var confirmed = confirm(
+										"Data updated successfully. Click OK to proceed to dashboard."
+									);
+									if (confirmed) {
+										// Redirect to another page (e.g., dashboard) upon confirmation
+										window.location.href = "/index.html"; // Replace with desired redirect URL
+									}
 								})
 								.catch((error) => {
 									// Handle error
@@ -168,10 +174,8 @@
 										"Data failed uploaded. Please check your data and credentials."
 									);
 								});
-						}else{
-							alert(
-								"Missing Data! Please insert the data and the map position by clicking it on the map"
-							);
+						} else {
+							alert("Please add a marker on the map.");
 						}
 					});
 			</script>
@@ -209,6 +213,6 @@
 
 		<script src="./assets/vendor/leaflet/leaflet-routing-machine.js"></script>
 		<!-- Javascript -->
-		<script src="./assets/js/add_location.js"></script>
+		<script src="./assets/js/edit_location.js"></script>
 	</body>
 </html>
