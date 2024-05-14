@@ -43,7 +43,7 @@
 	<body>
 		<script>
 			// Check if JWT token exists in local storage
-			const token = localStorage.getItem("token");
+			var token = localStorage.getItem("token");
 
 			// If JWT token doesn't exist, redirect to the login page
 			if (!token) {

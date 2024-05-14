@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", async function () {
 	// Check if JWT token exists in local storage
-	const token = localStorage.getItem("token");
+	var token = localStorage.getItem("token");
 
 	// If JWT token doesn't exist, redirect to the login page
 	if (!token) {
@@ -108,7 +108,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 		var deleteButton = document.createElement("button");
 		deleteButton.innerHTML = '<span class="material-icons-sharp">delete</span>';
 		deleteButton.classList.add("btn", "btn-danger");
-		deleteButton.onclick = deleteData(restaurant.id);
+		deleteButton.onclick = function () {
+			deleteData(restaurant.id);
+		};
 		actionCell.appendChild(deleteButton);
 
 		i++;
