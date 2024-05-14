@@ -1,6 +1,14 @@
 // Javascript for dashboard
 
 document.addEventListener("DOMContentLoaded", async function () {
+	// Check if JWT token exists in local storage
+	const token = localStorage.getItem("token");
+
+	// If JWT token doesn't exist, redirect to the login page
+	if (!token) {
+		window.location.href = "./login.html"; // Replace "/login.html" with your actual login page URL
+	}
+
 	// Menampilkan peta
 	var mymap = L.map("map_view").setView(
 		[-8.795279032677602, 115.17553347766035],
@@ -100,6 +108,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 		var deleteButton = document.createElement("button");
 		deleteButton.innerHTML = '<span class="material-icons-sharp">delete</span>';
 		deleteButton.classList.add("btn", "btn-danger");
+		deleteButton.onclick = deleteData(restaurant.id);
 		actionCell.appendChild(deleteButton);
 
 		i++;
@@ -188,3 +197,35 @@ mymap.on("click", function (e) {
 		newMarker = addMarker(e.latlng);
 	}
 });
+
+async function deleteData(id_restaurant) {
+	var confirmed = confirm(
+		"Are you sure wanted to delete this data? Click OK if you wanted to proceed"
+	);
+	if (confirmed) {
+		var api_url = localStorage.getItem("api_url");
+
+		var headers = {
+			Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+			"Content-Type": "application/json", // Specify the content type as JSON
+		};
+		var full_url = api_url + "/restaurants/" + id_restaurant;
+		await axios
+			.delete(full_url, {
+				headers,
+			})
+			.then((response) => {
+				// Populate the input field for input with id :
+				// name
+				// description
+				// email
+				// phoneNumber
+				alert("Data successfully deleted");
+			})
+			.catch((error) => {
+				// Handle error
+				console.error("Data failed uploaded:", error);
+				alert("Data failed uploaded. Please check your data and credentials.");
+			});
+	}
+}
