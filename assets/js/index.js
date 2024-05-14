@@ -96,22 +96,23 @@ document.addEventListener("DOMContentLoaded", async function () {
 		phoneCell.style.textAlign = "center";
 
 		// Update :
-		var actionCell = row.insertCell();
+		var editCell = row.insertCell();
 		var editButton = document.createElement("button");
 		editButton.innerHTML = '<span class="material-icons-sharp">edit</span>';
 		editButton.classList.add("btn", "btn-add");
 		editButton.onclick = function () {
 			window.location.href = "./edit_location.html?id=" + restaurant.id;
 		};
-		actionCell.appendChild(editButton);
+		editCell.appendChild(editButton);
 
+		var deleteCell = row.insertCell();
 		var deleteButton = document.createElement("button");
 		deleteButton.innerHTML = '<span class="material-icons-sharp">delete</span>';
 		deleteButton.classList.add("btn", "btn-danger");
 		deleteButton.onclick = function () {
 			deleteData(restaurant.id);
 		};
-		actionCell.appendChild(deleteButton);
+		deleteCell.appendChild(deleteButton);
 
 		i++;
 	});
