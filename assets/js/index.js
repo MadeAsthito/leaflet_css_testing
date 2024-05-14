@@ -261,7 +261,7 @@ async function logout() {
 				// description
 				// email
 				// phoneNumber
-				alert("Logout successfull!");
+				alert("Logging Out successfull!");
 				localStorage.removeItem("token");
 				localStorage.removeItem("user");
 				localStorage.removeItem("api_url");
@@ -270,8 +270,8 @@ async function logout() {
 			})
 			.catch((error) => {
 				// Handle error
-				console.error("Logout Failed:", error);
-				alert("Logout Failed!");
+				console.error("Logging Out Failed:", error);
+				alert("Logging Out Failed!");
 			});
 
 		console.log("Logging Out");
