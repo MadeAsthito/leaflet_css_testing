@@ -521,3 +521,8 @@ footer .icon-group {
 .register a:hover {
 	color: var(--color-info);
 }
+
+.login hr,
+.register hr {
+	margin-top: 0.8rem;
+}
