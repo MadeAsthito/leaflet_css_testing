@@ -206,6 +206,7 @@ async function deleteData(id_restaurant) {
 	);
 	if (confirmed) {
 		var api_url = localStorage.getItem("api_url");
+		console.log("deleting data for #" + id_restaurant);
 
 		var headers = {
 			Authorization: `Bearer ${token}`, // Include the token in the Authorization header
@@ -223,11 +224,49 @@ async function deleteData(id_restaurant) {
 				// email
 				// phoneNumber
 				alert("Data successfully deleted");
+				window.location.href = "/index.html";
 			})
 			.catch((error) => {
 				// Handle error
 				console.error("Data failed uploaded:", error);
 				alert("Data failed uploaded. Please check your data and credentials.");
+			});
+	}
+}
+
+async function logout() {
+	var confirmed = confirm(
+		"Are you sure wanted to log out? Click OK if you wanted to proceed"
+	);
+	if (confirmed) {
+		var api_url = localStorage.getItem("api_url");
+
+		var headers = {
+			Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+			"Content-Type": "application/json", // Specify the content type as JSON
+		};
+		var full_url = api_url + "/logout";
+		await axios
+			.get(full_url, {
+				headers,
+			})
+			.then((response) => {
+				// Populate the input field for input with id :
+				// name
+				// description
+				// email
+				// phoneNumber
+				alert("Logout successfull!");
+				localStorage.removeItem("token");
+				localStorage.removeItem("user");
+				localStorage.removeItem("api_url");
+
+				window.location.href = "/login.html";
+			})
+			.catch((error) => {
+				// Handle error
+				console.error("Logout Failed:", error);
+				alert("Logout Failed!");
 			});
 	}
 }
